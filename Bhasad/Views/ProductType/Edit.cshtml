@@ -1,0 +1,27 @@
+﻿@model BusinessLayer.Models.ProductTypeModel
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        <h4>Add Product Type</h4>
+        <hr />
+        <div class="form-group">
+            @Html.HiddenFor(m => m.ProductTypeId)
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="col-md-10">
+                <label>Product Type</label>
+                @Html.TextBoxFor(m => m.ProductType, new { @class = "control-label" })
+                @Html.ValidationMessageFor(m => m.ProductType, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Save" />
+        </div>
+    </div>
+}
+

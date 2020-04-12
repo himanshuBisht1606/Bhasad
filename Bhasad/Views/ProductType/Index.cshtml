@@ -1,0 +1,39 @@
+﻿@model IEnumerable<BusinessLayer.Models.ProductTypeModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        <h4 style="text-align:center">Product Type</h4>
+        <table class="table table-bordered" style="margin-top:50px;">
+            <thead>
+                <tr>
+                    <td colspan="2" style="text-align:right"><a id="add" class="editPt" href="@Url.Action("Add","ProductType")">Add</a></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th>Product Type Name</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var pt in Model)
+                {
+                    @Html.HiddenFor(m=>pt.ProductTypeId)
+                    <tr class="table-bordered">
+                        <td>@pt.ProductType</td>
+                        <td><a id="editPt" class="editPt" href="@Url.Action("Edit","ProductType",new { productTypeId = pt.ProductTypeId })">Edit</a></td>
+                        <td><a id="deletePt" class="deletePt" href="@Url.Action("Delete","ProductType",new { productTypeId = pt.ProductTypeId })">Delete</a></td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+}
+
